@@ -9,7 +9,10 @@ import SwiftUI
 
 struct PaymentView: View {
     
-    @State var paymentMade: Bool = false
+    @State private var cardNumber: String = ""
+    @State private var expiryDate: String = ""
+    @State private var cvv: String = ""
+    @State private var paymentMade: Bool = false
     
     var selectedSeats : Set<String>
     var selectedMovie: String
@@ -33,14 +36,23 @@ struct PaymentView: View {
         Text("Selected Seats:")
         Text(selectedSeats.sorted().joined(separator: ", "))
             .padding(.bottom)
-        
+        TextField("Card Number", text: $cardNumber)
+            .padding()
+                    
+        TextField("Expiry Date", text: $expiryDate)
+            .padding()
+                    
+        TextField("CVV", text: $cvv)
+            .padding()
         if (!paymentMade) {
             Button(action: {
                 
                 BookedSeats().addBookedSeats(addedSeats: selectedSeats, movie: selectedMovie)
                 paymentMade = true
                 
-            }) { Text("Make Payment") }
+            }) { Text("Make Payment")
+                .padding()
+                .disabled(cardNumber.isEmpty || expiryDate.isEmpty || cvv.isEmpty)}
             
         } else {
             

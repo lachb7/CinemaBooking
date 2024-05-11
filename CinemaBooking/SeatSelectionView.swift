@@ -21,12 +21,14 @@ struct SeatSelectionView: View {
     var numberOfSeatsInBooking: Int
     var bookingName: String
     var selectedMovie: String
+    var selectedNumberOfSeats: Int
     
     init(numberOfSeats: Int, bookingName: String, selectedMovie: String) {
         
         self.numberOfSeatsInBooking = numberOfSeats
         self.bookingName = bookingName
         self.selectedMovie = selectedMovie
+        self.selectedNumberOfSeats = numberOfSeats
         
         bookedSeats = BookedSeats().bookedSeats[selectedMovie] ?? []
         
@@ -82,7 +84,7 @@ struct SeatSelectionView: View {
                                 }
                 )
                 .padding()
-                
+                .disabled(selectedSeats.count != selectedNumberOfSeats)
             }
             
     }
