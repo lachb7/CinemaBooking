@@ -13,10 +13,12 @@ struct TicketsView: View {
     @State var numberOfSeats: Double = 1
     
     var selectedMovie: String
+    var selectedDate: Date
     
-    init(selectedMovie: String) {
+    init(selectedMovie: String, selectedDate: Date) {
         
         self.selectedMovie = selectedMovie
+        self.selectedDate = selectedDate
         
     }
 
@@ -34,6 +36,10 @@ struct TicketsView: View {
                 Text(selectedMovie)
                     .padding(.bottom)
             
+                Text("Selected Date:")
+                Text(selectedDate.formatted(date: .long, time: .omitted))
+                    .padding(.bottom)
+                
                 Text("Enter Booking Name")
                 TextField("Enter Booking Name", text: $bookingName)
                         .multilineTextAlignment(.center)
@@ -61,5 +67,5 @@ struct TicketsView: View {
 }
 
 #Preview {
-    TicketsView(selectedMovie: "Godzilla x Kong")
+    TicketsView(selectedMovie: "Godzilla x Kong", selectedDate: Date())
 }

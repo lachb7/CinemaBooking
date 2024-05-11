@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DB1819642BEF3BAB00656908 /* SessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB1819632BEF3BAB00656908 /* SessionData.swift */; };
 		DB8DD6A12BE1C8DC00453B91 /* CinemaBookingApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8DD6A02BE1C8DC00453B91 /* CinemaBookingApp.swift */; };
 		DB8DD6A32BE1C8DC00453B91 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8DD6A22BE1C8DC00453B91 /* ContentView.swift */; };
 		DB8DD6A52BE1C8DD00453B91 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DB8DD6A42BE1C8DD00453B91 /* Assets.xcassets */; };
@@ -19,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DB1819632BEF3BAB00656908 /* SessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionData.swift; sourceTree = "<group>"; };
 		DB8DD69D2BE1C8DC00453B91 /* CinemaBooking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CinemaBooking.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB8DD6A02BE1C8DC00453B91 /* CinemaBookingApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CinemaBookingApp.swift; sourceTree = "<group>"; };
 		DB8DD6A22BE1C8DC00453B91 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 			children = (
 				DB8DD6A02BE1C8DC00453B91 /* CinemaBookingApp.swift */,
 				DB8DD6A22BE1C8DC00453B91 /* ContentView.swift */,
+				DB1819632BEF3BAB00656908 /* SessionData.swift */,
 				DB8DD6AE2BE1D99300453B91 /* TicketsView.swift */,
 				DB8DD6B02BE1E13800453B91 /* SeatSelectionView.swift */,
 				DBBB772B2BE8DFB10056E63A /* BookedSeats.swift */,
@@ -154,6 +157,7 @@
 			files = (
 				DB8DD6AF2BE1D99300453B91 /* TicketsView.swift in Sources */,
 				DB8DD6B12BE1E13800453B91 /* SeatSelectionView.swift in Sources */,
+				DB1819642BEF3BAB00656908 /* SessionData.swift in Sources */,
 				DB8DD6A32BE1C8DC00453B91 /* ContentView.swift in Sources */,
 				DBBB772C2BE8DFB10056E63A /* BookedSeats.swift in Sources */,
 				DB8DD6B52BE1F1BF00453B91 /* SeatView.swift in Sources */,
