@@ -10,7 +10,12 @@ import SwiftUI
 struct PaymentView: View {
     
     @State private var cardNumber: String = ""
-    @State private var expiryDate: String = ""
+    //@State private var expiryDate: String = ""
+    //@State private var expiryDate = Date()
+    @State private var selectedMonthIndex = 0
+    @State private var selectedYearIndex = 0
+    @State private var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    @State private var years = Array(2024...2034).map { String($0) }
     @State private var cvv: String = ""
     @State private var paymentMade: Bool = false
     
@@ -36,14 +41,39 @@ struct PaymentView: View {
         Text("Selected Seats:")
         Text(selectedSeats.sorted().joined(separator: ", "))
             .padding(.bottom)
+        
         TextField("Card Number", text: $cardNumber)
             .padding()
-                    
-        TextField("Expiry Date", text: $expiryDate)
-            .padding()
-                    
+            .keyboardType(.numberPad)
+        
+        //TextField("Expiry Date", text: $expiryDate)
+        /*DatePicker(
+            "Expiry Date",
+            selection: $expiryDate,
+            displayedComponents: [.date]
+        )
+        .padding()*/
+        Text("Expiry Date")
+        HStack {
+            Picker(selection: $selectedMonthIndex, label: Text("Month")) {
+                ForEach(0..<months.count) { index in
+                    Text(months[index]).tag(index)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+            
+            Picker(selection: $selectedYearIndex, label: Text("Year")) {
+                ForEach(0..<years.count) { index in
+                    Text(years[index]).tag(index)
+                }
+            }
+            .pickerStyle(MenuPickerStyle())
+        }
+        .padding()
+        
         TextField("CVV", text: $cvv)
             .padding()
+        
         if (!paymentMade) {
             Button(action: {
                 
@@ -52,7 +82,7 @@ struct PaymentView: View {
                 
             }) { Text("Make Payment")
                 .padding()
-                .disabled(cardNumber.isEmpty || expiryDate.isEmpty || cvv.isEmpty)}
+                .disabled(cardNumber.count != 16 || cvv.count != 3)}
             
         } else {
             
@@ -73,6 +103,8 @@ struct PaymentView: View {
         
     }
 }
+
+
 
 #Preview {
     PaymentView(selectedSeats: ["A1","A2"], selectedMovie: "Dune")
