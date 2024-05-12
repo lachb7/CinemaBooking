@@ -50,7 +50,7 @@ struct TicketsView: View {
                 Slider(value: $numberOfSeats,in: 1...10, step: 1)
                 Text("\(Int(numberOfSeats))")
                 
-                NavigationLink(destination: SeatSelectionView(numberOfSeats: Int(numberOfSeats), bookingName: bookingName, selectedMovie: selectedMovie),
+                NavigationLink(destination: SeatSelectionView(numberOfSeats: Int(numberOfSeats), bookingName: bookingName, selectedMovie: selectedMovie, selectedDate: selectedDate),
                                 label: { Text("Select Seats")
                                         .font(.title3)
                                 }

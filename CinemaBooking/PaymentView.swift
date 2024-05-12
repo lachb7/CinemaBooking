@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct PaymentView: View {
     
@@ -21,12 +22,14 @@ struct PaymentView: View {
     
     var selectedSeats : Set<String>
     var selectedMovie: String
+    var bookingName: String
+    var selectedDate: Date
     
-    init(selectedSeats: Set<String>, selectedMovie: String) {
-        
+    init(selectedSeats: Set<String>, selectedMovie: String, bookingName: String, selectedDate: Date) {
         self.selectedSeats = selectedSeats
         self.selectedMovie = selectedMovie
-        
+        self.bookingName = bookingName
+        self.selectedDate = selectedDate
     }
     
     
@@ -34,7 +37,12 @@ struct PaymentView: View {
         Text("Payment")
             .font(.title)
         Spacer()
-        
+        Text("Customer Name:")
+        Text(bookingName)
+            .padding(.bottom)
+        Text("Selected Date:")
+        Text(selectedDate, style: .date)
+            .padding(.bottom)
         Text("Selected Movie:")
         Text(selectedMovie)
             .padding(.bottom)
@@ -61,7 +69,6 @@ struct PaymentView: View {
                 }
             }
             .pickerStyle(MenuPickerStyle())
-            
             Picker(selection: $selectedYearIndex, label: Text("Year")) {
                 ForEach(0..<years.count) { index in
                     Text(years[index]).tag(index)
@@ -76,14 +83,12 @@ struct PaymentView: View {
         
         if (!paymentMade) {
             Button(action: {
-                
                 BookedSeats().addBookedSeats(addedSeats: selectedSeats, movie: selectedMovie)
                 paymentMade = true
-                
             }) { Text("Make Payment")
                 .padding()
                 .disabled(cardNumber.count != 16 || cvv.count != 3)}
-            
+                
         } else {
             
             Text("Payment Successful")
@@ -104,8 +109,6 @@ struct PaymentView: View {
     }
 }
 
-
-
 #Preview {
-    PaymentView(selectedSeats: ["A1","A2"], selectedMovie: "Dune")
+    PaymentView(selectedSeats: ["A1","A2"], selectedMovie: "Dune", bookingName: "David", selectedDate: Date())
 }

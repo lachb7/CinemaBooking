@@ -22,13 +22,15 @@ struct SeatSelectionView: View {
     var bookingName: String
     var selectedMovie: String
     var selectedNumberOfSeats: Int
+    var selectedDate: Date
     
-    init(numberOfSeats: Int, bookingName: String, selectedMovie: String) {
+    init(numberOfSeats: Int, bookingName: String, selectedMovie: String, selectedDate: Date) {
         
         self.numberOfSeatsInBooking = numberOfSeats
         self.bookingName = bookingName
         self.selectedMovie = selectedMovie
         self.selectedNumberOfSeats = numberOfSeats
+        self.selectedDate = selectedDate
         
         bookedSeats = BookedSeats().bookedSeats[selectedMovie] ?? []
         
@@ -45,7 +47,15 @@ struct SeatSelectionView: View {
                 
                 Text("Selected Movie:")
                 Text(selectedMovie)
-                    // .padding(.bottom)
+                    .padding(.bottom)
+                
+                Text("Selected Date:")
+                Text(selectedDate, style: .date)
+                    .padding(.bottom)
+                
+                Text("Customer Name:")
+                Text(bookingName)
+                    .padding(.bottom)
                 
                 Text("Number of seats to select:")
                 Text(String(numberOfSeatsInBooking))
@@ -78,10 +88,9 @@ struct SeatSelectionView: View {
                 
                 Spacer()
                 
-                NavigationLink(destination: PaymentView(selectedSeats: selectedSeats, selectedMovie: selectedMovie),
-                                label: { Text("Go to Payment")
-                                        .font(.title3)
-                                }
+                NavigationLink(destination: PaymentView(selectedSeats: selectedSeats, selectedMovie: selectedMovie, bookingName: bookingName, selectedDate: selectedDate), label: { Text("Go to Payment")
+                        .font(.title3)
+                }
                 )
                 .padding()
                 .disabled(selectedSeats.count != selectedNumberOfSeats)
@@ -91,5 +100,5 @@ struct SeatSelectionView: View {
 }
 
 #Preview {
-    SeatSelectionView(numberOfSeats: 3, bookingName: "David", selectedMovie: "Dune")
+    SeatSelectionView(numberOfSeats: 3, bookingName: "David", selectedMovie: "Dune", selectedDate: Date())
 }
