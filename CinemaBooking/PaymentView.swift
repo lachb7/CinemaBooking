@@ -90,24 +90,23 @@ struct PaymentView: View {
                 .disabled(cardNumber.count != 16 || cvv.count != 3)}
                 
         } else {
-            
             Text("Payment Successful")
-            
         }
         
         Spacer()
         
-        // navigation link to go back to the home screen
-        NavigationLink(destination: ContentView()
+        // navigation link to go back to the qrcode screen
+        NavigationLink(destination: QRCodeView(selectedSeats: selectedSeats, selectedMovie: selectedMovie, bookingName: bookingName, selectedDate: selectedDate)
                                     .navigationBarBackButtonHidden(true)
                                 ,
-                       label: { Text("Home")
+                       label: { Text("QR Code")
                                 .font(.title)
                                 }
                        )
         
     }
 }
+
 
 #Preview {
     PaymentView(selectedSeats: ["A1","A2"], selectedMovie: "Dune", bookingName: "David", selectedDate: Date())

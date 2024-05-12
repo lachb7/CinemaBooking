@@ -17,6 +17,8 @@
 		DB8DD6B32BE1E7F400453B91 /* PaymentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8DD6B22BE1E7F400453B91 /* PaymentView.swift */; };
 		DB8DD6B52BE1F1BF00453B91 /* SeatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8DD6B42BE1F1BF00453B91 /* SeatView.swift */; };
 		DBBB772C2BE8DFB10056E63A /* BookedSeats.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBB772B2BE8DFB10056E63A /* BookedSeats.swift */; };
+		F88847442BF1160B00BA7A9A /* QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88847432BF1160B00BA7A9A /* QRCode.swift */; };
+		F88847462BF116A000BA7A9A /* QRCodeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F88847452BF116A000BA7A9A /* QRCodeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		DB8DD6B22BE1E7F400453B91 /* PaymentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentView.swift; sourceTree = "<group>"; };
 		DB8DD6B42BE1F1BF00453B91 /* SeatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeatView.swift; sourceTree = "<group>"; };
 		DBBB772B2BE8DFB10056E63A /* BookedSeats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookedSeats.swift; sourceTree = "<group>"; };
+		F88847432BF1160B00BA7A9A /* QRCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCode.swift; sourceTree = "<group>"; };
+		F88847452BF116A000BA7A9A /* QRCodeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QRCodeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +75,8 @@
 				DBBB772B2BE8DFB10056E63A /* BookedSeats.swift */,
 				DB8DD6B42BE1F1BF00453B91 /* SeatView.swift */,
 				DB8DD6B22BE1E7F400453B91 /* PaymentView.swift */,
+				F88847432BF1160B00BA7A9A /* QRCode.swift */,
+				F88847452BF116A000BA7A9A /* QRCodeView.swift */,
 				DB8DD6A42BE1C8DD00453B91 /* Assets.xcassets */,
 				DB8DD6A62BE1C8DD00453B91 /* Preview Content */,
 			);
@@ -157,12 +163,14 @@
 			files = (
 				DB8DD6AF2BE1D99300453B91 /* TicketsView.swift in Sources */,
 				DB8DD6B12BE1E13800453B91 /* SeatSelectionView.swift in Sources */,
+				F88847462BF116A000BA7A9A /* QRCodeView.swift in Sources */,
 				DB1819642BEF3BAB00656908 /* SessionData.swift in Sources */,
 				DB8DD6A32BE1C8DC00453B91 /* ContentView.swift in Sources */,
 				DBBB772C2BE8DFB10056E63A /* BookedSeats.swift in Sources */,
 				DB8DD6B52BE1F1BF00453B91 /* SeatView.swift in Sources */,
 				DB8DD6B32BE1E7F400453B91 /* PaymentView.swift in Sources */,
 				DB8DD6A12BE1C8DC00453B91 /* CinemaBookingApp.swift in Sources */,
+				F88847442BF1160B00BA7A9A /* QRCode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
