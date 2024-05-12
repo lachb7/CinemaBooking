@@ -2,14 +2,14 @@
 //  BookedSeats.swift
 //  CinemaBooking
 //
-//  Created by user245437 on 5/6/24.
+//  Created by David Bramston, UTS
 //
 
 import Foundation
 
 class BookedSeats {
         
-    var bookedSeats : [String: Set<String>] = [:]
+    var bookedSeats : [String : [String: Set<String>]] = [:]
     
     init() {
         
@@ -17,13 +17,21 @@ class BookedSeats {
         
     }
 
-    func addBookedSeats(addedSeats: Set<String>, movie: String) {
+    func addBookedSeats(addedSeats: Set<String>, movie: String, date: Date) {
         
-        if bookedSeats[movie] == nil {
-            bookedSeats[movie] = addedSeats
+        let dateShort : String = date.formatted(.iso8601.year().month().day().dateSeparator(.dash))
+        
+        print(dateShort)
+        print(addedSeats)
+        
+        if bookedSeats[dateShort] == nil {
+            bookedSeats[dateShort] = [ movie: addedSeats ]
+        } else if bookedSeats[dateShort]?[movie] == nil {
+            bookedSeats[dateShort]?[movie] = addedSeats
         } else {
-            bookedSeats[movie]?.formUnion(addedSeats)
+            bookedSeats[dateShort]?[movie]?.formUnion(addedSeats)
         }
+    
         writeBookedSeatsToJsonFile()
 
     }
@@ -52,7 +60,7 @@ class BookedSeats {
         do {
             let fileURL = URL.documentsDirectory.appending(path: "seats.json")
             let jsonData = try Data(contentsOf: fileURL)
-            bookedSeats = try decoder.decode([String: Set<String>].self, from: jsonData)
+            bookedSeats = try decoder.decode([String: [String: Set<String>]].self, from: jsonData)
         } catch {
             print(error)
         }

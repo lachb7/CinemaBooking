@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SeatSelectionView: View {
     
-    let numberOfRows = 5
     let seatsPerRow = 8
     
     let rowLetters = ["A", "B", "C", "D", "E"]
@@ -32,7 +31,9 @@ struct SeatSelectionView: View {
         self.selectedNumberOfSeats = numberOfSeats
         self.selectedDate = selectedDate
         
-        bookedSeats = BookedSeats().bookedSeats[selectedMovie] ?? []
+        let dateShort : String = selectedDate.formatted(.iso8601.year().month().day().dateSeparator(.dash))
+        
+        bookedSeats = BookedSeats().bookedSeats[dateShort]?[selectedMovie] ?? []
         
     }
     

@@ -83,7 +83,7 @@ struct PaymentView: View {
         
         if (!paymentMade) {
             Button(action: {
-                BookedSeats().addBookedSeats(addedSeats: selectedSeats, movie: selectedMovie)
+                BookedSeats().addBookedSeats(addedSeats: selectedSeats, movie: selectedMovie, date: selectedDate)
                 paymentMade = true
             }) { Text("Make Payment")
                 .padding()

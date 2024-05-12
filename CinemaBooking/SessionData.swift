@@ -7,9 +7,18 @@
 
 import Foundation
 
+struct MovieInfo: Hashable, Identifiable {
+    
+    let title: String
+    let posterURL: String
+    let id : Int
+    
+}
+
+
 class SessionData: ObservableObject {
     
-    @Published var movies : [String] = []
+    @Published var movies : [MovieInfo] = []
     let urlSession: URLSession
     let baseApiURL = "https://api-gate2.movieglu.com/cinemaShowTimes/?cinema_id=8842&date="
     
@@ -46,13 +55,25 @@ class SessionData: ObservableObject {
                     guard !safeData.isEmpty else { return }
                     do {
                         let jsonObject = try JSONSerialization.jsonObject(with: safeData, options: [])
-                        if let json_dict = jsonObject as? [String: Any] {
-                            if let films = json_dict["films"] as? Array<Any> {
+                        if let jsonDict = jsonObject as? [String: Any] {
+                            if let films = jsonDict["films"] as? Array<Any> {
                                 for film in films {
-                                    if let film_dict = film as? [String: Any] {
-                                        if let film_name = film_dict["film_name"] as? String {
-                                            DispatchQueue.main.async  {
-                                                self.movies.append(film_name)
+                                    if let filmDict = film as? [String: Any] {
+                                        if let filmName = filmDict["film_name"] as? String {
+                                            if let filmId = filmDict["film_id"] as? Int {
+                                                if let imagesDict = filmDict["images"] as? [String: Any] {
+                                                    if let posterDict = imagesDict["poster"] as? [String: Any] {
+                                                        if let oneDict = posterDict["1"] as? [String: Any] {
+                                                            if let mediumDict = oneDict["medium"] as? [String:Any] {
+                                                                if let imageURL = mediumDict["film_image"] as? String {
+                                                                    DispatchQueue.main.async {
+                                                                        self.movies.append(MovieInfo(title:filmName, posterURL: imageURL, id: filmId))
+                                                                    }
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+                                                }
                                             }
                                         }
                                     }

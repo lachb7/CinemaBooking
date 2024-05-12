@@ -51,22 +51,26 @@ struct ContentView: View {
                     .font(.title2)
                 Divider()
                 
-                ForEach(sessionData.movies, id: \.self) {
-                    movie_title in 
+                //ForEach(sessionData.movies, id: \.self) {
+                //    movieInfo in
+                  
+                List(sessionData.movies) { movieInfo in
                     
-                    NavigationLink(destination: TicketsView(selectedMovie: movie_title, selectedDate: date),
-                                                   label: { Text(movie_title)
-                      //                      .font(.title3)
-                                                        }
-                                    )
-                    
-                    
-                    //Text(movie_title)
+                    NavigationLink(destination: TicketsView(selectedMovie: movieInfo.title, selectedDate: date),
+                                   label: {
+                        HStack {
+                            AsyncImage(url: URL(string: movieInfo.posterURL)) { poster in
+                                poster.resizable()
+                                    .frame(maxWidth: 66, maxHeight: 100)
+                            } placeholder: {
+                                ProgressView()
+                            }
+                            Text(movieInfo.title)
+                        }
+                    }
+                    )
                 }
-                
-                
-                
-                
+                    
 //                NavigationLink(destination: TicketsView(selectedMovie: "Godzilla x Kong"),
 //                               label: { Text("Godzilla x Kong")
 //                        .font(.title3)
