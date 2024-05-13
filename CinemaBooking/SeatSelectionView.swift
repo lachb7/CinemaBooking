@@ -9,9 +9,9 @@ import SwiftUI
 
 struct SeatSelectionView: View {
     
-    let seatsPerRow = 8
+    let numSeatsPerRow = 10
     
-    let rowLetters = ["A", "B", "C", "D", "E"]
+    let rowLettersArr = Array("ABCDEFG")
     
     var bookedSeats : Set<String>
     
@@ -63,9 +63,9 @@ struct SeatSelectionView: View {
                     .padding(.bottom)
             
                 Grid {
-                    ForEach(rowLetters, id: \.self) { letter in
+                    ForEach(rowLettersArr, id: \.self) { letter in
                         GridRow {
-                            ForEach(1...seatsPerRow, id: \.self) {
+                            ForEach(1...numSeatsPerRow, id: \.self) {
                                 num in SeatView(seatNumber: "\(letter)\(num)", 
                                                 isAvailable: !bookedSeats.contains("\(letter)\(num)"),
                                             isSelected: selectedSeats.contains("\(letter)\(num)"))

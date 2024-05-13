@@ -31,7 +31,7 @@ struct SeatView: View {
                     .fill(isAvailable ? (isSelected ? .red : .yellow) : .gray)
                     .frame(width: 30, height: 30)
         )
-            .padding(10)
+            .padding(6)
     }
 }
 
