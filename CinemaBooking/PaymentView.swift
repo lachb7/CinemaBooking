@@ -19,6 +19,7 @@ struct PaymentView: View {
     @State private var years = Array(2024...2034).map { String($0) }
     @State private var cvv: String = ""
     @State private var paymentMade: Bool = false
+    @State private var isPaymentConfirmed: Bool = false
     
     var selectedSeats : Set<String>
     var selectedMovie: String
@@ -36,17 +37,22 @@ struct PaymentView: View {
     var body: some View {
         Text("Payment")
             .font(.title)
+            .bold()
         Spacer()
         Text("Customer Name:")
+            .bold()
         Text(bookingName)
             .padding(.bottom)
         Text("Selected Date:")
+            .bold()
         Text(selectedDate, style: .date)
             .padding(.bottom)
         Text("Selected Movie:")
+            .bold()
         Text(selectedMovie)
             .padding(.bottom)
         Text("Selected Seats:")
+            .bold()
         Text(selectedSeats.sorted().joined(separator: ", "))
             .padding(.bottom)
         
@@ -85,27 +91,42 @@ struct PaymentView: View {
             Button(action: {
                 BookedSeats().addBookedSeats(addedSeats: selectedSeats, movie: selectedMovie, date: selectedDate)
                 paymentMade = true
+                //confirmPayment()
             }) { Text("Make Payment")
                 .padding()
                 .disabled(cardNumber.count != 16 || cvv.count != 3)}
                 
         } else {
             Text("Payment Successful")
+                .padding()
+                /*.onAppear {
+                    isPaymentConfirmed = true
+                }*/
         }
-        
         Spacer()
         
         // navigation link to go back to the qrcode screen
+        /*NavigationLink(destination: QRCodeView(selectedSeats: selectedSeats, selectedMovie: selectedMovie, bookingName: bookingName, selectedDate: selectedDate)
+                                            .navigationBarBackButtonHidden(true),
+                       isActive: .constant(paymentMade)
+                ) {
+                    Text("QR Code")
+                        .font(.title)
+                }
+                .disabled(!paymentMade)*/
         NavigationLink(destination: QRCodeView(selectedSeats: selectedSeats, selectedMovie: selectedMovie, bookingName: bookingName, selectedDate: selectedDate)
-                                    .navigationBarBackButtonHidden(true)
-                                ,
-                       label: { Text("QR Code")
-                                .font(.title)
-                                }
-                       )
-        
+                                    .navigationBarBackButtonHidden(true),
+                               isActive: .constant(paymentMade)
+                ) {
+                    EmptyView()
+                }
+                .hidden()
     }
+    /*func confirmPayment() {
+            paymentMade = true
+    }*/
 }
+
 
 
 #Preview {

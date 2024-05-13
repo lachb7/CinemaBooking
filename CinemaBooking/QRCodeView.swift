@@ -22,14 +22,19 @@ struct QRCodeView: View {
     }
     
     var body: some View {
+        Text("Payment Successful")
+            .font(.title)
+            .bold()
+        Spacer()
         //QRCode(url: "Customer Name: \(bookingName), Selected Date: \(selectedDate), Selected Movie: \(selectedMovie), Selected Seats: \(selectedSeats.sorted().joined(separator: ", "))")
             //.padding()
         QRCode(url: "Customer Name: \(bookingName)\nSelected Date: \(selectedDate)\nSelected Movie: \(selectedMovie)\nSelected Seats: \(selectedSeats.sorted().joined(separator: ", "))")
             .padding()
         
-        Text("Please show this QR code to staff when entering cinema")
+        Text("Please show this QR code to staff when entering cinema to get your ticket")
             .padding()
-
+            .bold()
+        Spacer()
         NavigationLink(destination: ContentView()
                                     .navigationBarBackButtonHidden(true)
                                 ,
