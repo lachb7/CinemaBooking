@@ -25,23 +25,26 @@ struct QRCodeView: View {
         Text("Payment Successful")
             .font(.title)
             .bold()
+        
         Spacer()
-        //QRCode(url: "Customer Name: \(bookingName), Selected Date: \(selectedDate), Selected Movie: \(selectedMovie), Selected Seats: \(selectedSeats.sorted().joined(separator: ", "))")
-            //.padding()
+        
+        //Generate the QRcode image with Name, Date, Movie and Seats
         QRCode(url: "Customer Name: \(bookingName)\nSelected Date: \(selectedDate)\nSelected Movie: \(selectedMovie)\nSelected Seats: \(selectedSeats.sorted().joined(separator: ", "))")
             .padding()
         
         Text("Please show this QR code to staff when entering cinema to get your ticket")
             .padding()
             .bold()
+        
         Spacer()
+        
+        // Navigation link to go to ContentView
         NavigationLink(destination: ContentView()
-                                    .navigationBarBackButtonHidden(true)
-                                ,
+            .navigationBarBackButtonHidden(true),
                        label: { Text("Home")
-                                .font(.title)
-                                }
-                       )
+                .font(.title)
+        }
+        )
     }
 }
 

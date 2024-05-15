@@ -21,16 +21,17 @@ struct QRCode: View {
             .frame(width: 150, height: 150, alignment: .center)
     }
     
+    //Generate QR code images using the provided String
     func generateQRcodeImage(_ url : String) -> UIImage {
         let data = Data(url.utf8)
         filter.setValue(data, forKey: "inputMessage")
-        
+        //Creates a CGImage from the QR Code Image
         if let qrCodeImage = filter.outputImage {
             if let qrCodeCGImage = context.createCGImage(qrCodeImage, from: qrCodeImage.extent) {
                 return UIImage(cgImage: qrCodeCGImage)
             }
         }
-            return UIImage(systemName: "xmark") ?? UIImage()
-        
+        //show "xmark" image if fail
+        return UIImage(systemName: "xmark") ?? UIImage()
     }
 }
