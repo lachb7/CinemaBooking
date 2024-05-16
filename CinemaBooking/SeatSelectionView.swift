@@ -66,18 +66,19 @@ struct SeatSelectionView: View {
                 Grid {
                     ForEach(rowLettersArr, id: \.self) { letter in
                         GridRow {
-                            ForEach(1...numSeatsPerRow, id: \.self) {
-                                num in SeatView(seatNumber: "\(letter)\(num)", 
-                                                isAvailable: !bookedSeats.contains("\(letter)\(num)"),
-                                            isSelected: selectedSeats.contains("\(letter)\(num)"))
+                            ForEach(1...numSeatsPerRow, id: \.self) { num in
+                                let seatNum = "\(letter)\(num)"
+                                SeatView(seatNumber: seatNum,
+                                                isAvailable: !bookedSeats.contains(seatNum),
+                                            isSelected: selectedSeats.contains(seatNum))
                                     .onTapGesture {
                                         // if seat already booked then tap gesture does nothing
-                                        if !bookedSeats.contains("\(letter)\(num)") {
+                                        if !bookedSeats.contains(seatNum) {
                                             // tapping on seat will toggle the seat selection by removing/inserting seat in selectedSeats set
-                                            if selectedSeats.contains("\(letter)\(num)") {
-                                                selectedSeats.remove("\(letter)\(num)")
+                                            if selectedSeats.contains(seatNum) {
+                                                selectedSeats.remove(seatNum)
                                             } else {
-                                                selectedSeats.insert("\(letter)\(num)")
+                                                selectedSeats.insert(seatNum)
                                             }
                                         }
                                     }
