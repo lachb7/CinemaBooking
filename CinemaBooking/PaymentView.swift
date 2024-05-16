@@ -8,8 +8,9 @@
 import SwiftUI
 import UIKit
 
+//This view show the payment with Customer name, selected Movie, Date and seat
+//user can enter Card number, CVV and select the expiry date
 struct PaymentView: View {
-    
     @State private var cardNumber: String = ""
     @State private var selectedMonthIndex = 0
     @State private var selectedYearIndex = 0
@@ -90,7 +91,6 @@ struct PaymentView: View {
                     .padding()
                 //Card Number need to be 16-digit and CVV need to be 3-digit
                 .disabled(cardNumber.count != 16 || cvv.count != 3)}
-            
         } else {
             Text("Payment Successful")
                 .padding()
@@ -109,7 +109,6 @@ struct PaymentView: View {
         .hidden()// Hide the navigation link
     }
 }
-
 
 #Preview {
     PaymentView(selectedSeats: ["A1","A2"], selectedMovie: "Dune", bookingName: "David", selectedDate: Date())

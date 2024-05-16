@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+//This view show the generated QR code
 struct QRCodeView: View {
     
     var selectedSeats : Set<String>

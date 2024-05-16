@@ -10,6 +10,7 @@ import SwiftUI
 import CoreImage.CIFilterBuiltins
 
 struct QRCode: View {
+    
     let context = CIContext()
     let filter = CIFilter.qrCodeGenerator()
     var url : String
