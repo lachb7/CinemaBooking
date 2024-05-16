@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// this view allows the user to input basic information about the cinema booking such as date, customer name, and number of seats
 struct TicketsView: View {
     
     @State var bookingName: String = ""

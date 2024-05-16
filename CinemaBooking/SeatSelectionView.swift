@@ -7,15 +7,14 @@
 
 import SwiftUI
 
+// this view shows the cinema seats and allows the user to select seats
 struct SeatSelectionView: View {
     
     let numSeatsPerRow = 10
+    let rowLettersArr = Array("ABCDEFG")  // array of letters used for seat rows
     
-    let rowLettersArr = Array("ABCDEFG")
-    
-    var bookedSeats : Set<String>
-    
-    @State var selectedSeats : Set<String> = []
+    var bookedSeats : Set<String>  // set of seats already booked
+    @State var selectedSeats : Set<String> = []  // set of seats selected in current booking
     
     var numberOfSeatsInBooking: Int
     var bookingName: String
@@ -33,6 +32,7 @@ struct SeatSelectionView: View {
         
         let dateShort : String = selectedDate.formatted(.iso8601.year().month().day().dateSeparator(.dash))
         
+        // retrieve the seats already booked for the selected date and movie
         bookedSeats = BookedSeats().bookedSeats[dateShort]?[selectedMovie] ?? []
         
     }
@@ -62,6 +62,7 @@ struct SeatSelectionView: View {
                 Text(String(numberOfSeatsInBooking))
                     .padding(.bottom)
             
+                // grid for showing the seats
                 Grid {
                     ForEach(rowLettersArr, id: \.self) { letter in
                         GridRow {
@@ -70,7 +71,9 @@ struct SeatSelectionView: View {
                                                 isAvailable: !bookedSeats.contains("\(letter)\(num)"),
                                             isSelected: selectedSeats.contains("\(letter)\(num)"))
                                     .onTapGesture {
+                                        // if seat already booked then tap gesture does nothing
                                         if !bookedSeats.contains("\(letter)\(num)") {
+                                            // tapping on seat will toggle the seat selection by removing/inserting seat in selectedSeats set
                                             if selectedSeats.contains("\(letter)\(num)") {
                                                 selectedSeats.remove("\(letter)\(num)")
                                             } else {
@@ -89,6 +92,7 @@ struct SeatSelectionView: View {
                 
                 Spacer()
                 
+                // navigation link to go to payment view - disabled if number of selected seats is not equal to the number of seats for the booking
                 NavigationLink(destination: PaymentView(selectedSeats: selectedSeats, selectedMovie: selectedMovie, bookingName: bookingName, selectedDate: selectedDate), label: { Text("Go to Payment")
                         .font(.title3)
                 }

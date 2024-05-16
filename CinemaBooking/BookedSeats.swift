@@ -7,9 +7,10 @@
 
 import Foundation
 
+// this class is used to write/read booked seats to a JSON file
 class BookedSeats {
         
-    var bookedSeats : [String : [String: Set<String>]] = [:]
+    var bookedSeats : [String : [String: Set<String>]] = [:]   // holds the seats booking: [bookingDate: [movieTitle : set of booked seats]]
     
     init() {
         
@@ -17,6 +18,7 @@ class BookedSeats {
         
     }
 
+    // adds set of booked seats to the existing booked seats for a given movie and date
     func addBookedSeats(addedSeats: Set<String>, movie: String, date: Date) {
         
         let dateShort : String = date.formatted(.iso8601.year().month().day().dateSeparator(.dash))

@@ -7,19 +7,14 @@
 
 import SwiftUI
 
+// the first view for the app which allows the user to select a date, and select a movie from a list
 struct ContentView: View {
 
+    // variable used for retrieving movie list and poster URLs
     @StateObject var sessionData = SessionData()
     
     @State var date = Date()
     let dateRange = Date.now...Date.now.addingTimeInterval(14 * 24 * 60 * 60)  // 14 days
-    
-    //var sessionData = SessionData()
-    
-    
-    init() {
-        
-    }
     
     var body: some View {
         NavigationView {
@@ -51,9 +46,7 @@ struct ContentView: View {
                     .font(.title2)
                 Divider()
                 
-                //ForEach(sessionData.movies, id: \.self) {
-                //    movieInfo in
-                  
+                // list of the movie title and poster images
                 List(sessionData.movies) { movieInfo in
                     
                     NavigationLink(destination: TicketsView(selectedMovie: movieInfo.title, selectedDate: date),
@@ -70,28 +63,7 @@ struct ContentView: View {
                     }
                     )
                 }
-                    
-//                NavigationLink(destination: TicketsView(selectedMovie: "Godzilla x Kong"),
-//                               label: { Text("Godzilla x Kong")
-//                        .font(.title3)
-//                                    }
-//                )
-//                .padding()
-//                
-//                NavigationLink(destination: TicketsView(selectedMovie: "Dune"),
-//                                label: { Text("Dune")
-//                                        .font(.title3)
-//                                }
-//                )
-//                .padding()
-//                
-//                NavigationLink(destination: TicketsView(selectedMovie: "Ghostbusters"),
-//                                label: { Text("Ghostbusters")
-//                                        .font(.title3)
-//                                }
-//                )
-//                .padding()
-                
+                                    
                 Spacer()
                 
             }

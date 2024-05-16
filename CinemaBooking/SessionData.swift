@@ -15,7 +15,7 @@ struct MovieInfo: Hashable, Identifiable {
     
 }
 
-
+// this class allows for the retrieval of movie titles and poster image URLs from the MovieGlu API
 class SessionData: ObservableObject {
     
     @Published var movies : [MovieInfo] = []
@@ -37,6 +37,8 @@ class SessionData: ObservableObject {
         if let url = URL(string: apiURL) {
             
             urlRequest = URLRequest(url: url)
+            
+            // add HTTP headers, as required by the API
             urlRequest.addValue("UTS_2", forHTTPHeaderField: "client")
             urlRequest.addValue("D5e9SkbW9e8AdprYDYWhr55i39rKNwAFff8RIkw2", forHTTPHeaderField: "x-api-key")
             urlRequest.addValue("Basic VVRTXzJfWFg6OGo1WUphZm96aU50", forHTTPHeaderField: "authorization")
@@ -45,12 +47,14 @@ class SessionData: ObservableObject {
             urlRequest.addValue("-22.0;14.0", forHTTPHeaderField: "geolocation")
             urlRequest.addValue(Date().ISO8601Format(), forHTTPHeaderField: "device-datetime")
             
+            // perform the URL request
             let task = urlSession.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
                     print(error)
                     return
                 }
                 
+                // get the film title, id and poster image URL from the response
                 if let safeData = data {
                     guard !safeData.isEmpty else { return }
                     do {

@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+// this view is for an individual seat
 struct SeatView: View {
     
     var seatNumber : String
@@ -28,7 +29,7 @@ struct SeatView: View {
             .foregroundStyle(Color.white)
             .background(
                 RoundedRectangle(cornerSize: /*@START_MENU_TOKEN@*/CGSize(width: 20, height: 10)/*@END_MENU_TOKEN@*/)
-                    .fill(isAvailable ? (isSelected ? .red : .yellow) : .gray)
+                    .fill(isAvailable ? (isSelected ? .red : .yellow) : .gray)  // seat has a colour depending on availablity and selection
                     .frame(width: 30, height: 30)
         )
             .padding(6)
