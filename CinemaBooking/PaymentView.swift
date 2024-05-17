@@ -83,6 +83,7 @@ struct PaymentView: View {
         TextField("CVV", text: $cvv)
             .padding()
         
+        // Button to make payment, disabled if card number or CVV is invalid
         if (!paymentMade) {
             Button(action: {
                 BookedSeats().addBookedSeats(addedSeats: selectedSeats, movie: selectedMovie, date: selectedDate)
@@ -98,7 +99,7 @@ struct PaymentView: View {
         
         Spacer()
         
-        // Navigation link to go to QRCodeView
+        // Navigation link to go to QRCodeView, activated only if payment is made
         NavigationLink(destination: QRCodeView(selectedSeats: selectedSeats, selectedMovie: selectedMovie, bookingName: bookingName, selectedDate: selectedDate)
             .navigationBarBackButtonHidden(true),
                        //Go to QRCodeView if only paymentMade = true

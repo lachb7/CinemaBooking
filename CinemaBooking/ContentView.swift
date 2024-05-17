@@ -13,8 +13,9 @@ struct ContentView: View {
     // variable used for retrieving movie list and poster URLs
     @StateObject var sessionData = SessionData()
     
+    // State variable to keep track of the selected date.
     @State var date = Date()
-    let dateRange = Date.now...Date.now.addingTimeInterval(14 * 24 * 60 * 60)  // 14 days
+    let dateRange = Date.now...Date.now.addingTimeInterval(14 * 24 * 60 * 60)  //Date range of 14 days starting from today.
     
     var body: some View {
         NavigationView {
@@ -26,7 +27,7 @@ struct ContentView: View {
                 
                 Spacer()
                 
-
+                // Date picker for selecting the date
                 DatePicker(
                     "Select Date:",
                     selection: $date,

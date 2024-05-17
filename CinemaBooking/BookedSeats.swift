@@ -25,12 +25,15 @@ class BookedSeats {
         
         print(dateShort)
         print(addedSeats)
-        
+
+        // Check if the date entry exists, if not, create a new entry.
         if bookedSeats[dateShort] == nil {
             bookedSeats[dateShort] = [ movie: addedSeats ]
         } else if bookedSeats[dateShort]?[movie] == nil {
+            // If the movie entry for the date does not exist, create a new entry.
             bookedSeats[dateShort]?[movie] = addedSeats
         } else {
+            // If both date and movie entries exist, merge the new seats with the existing seats.
             bookedSeats[dateShort]?[movie]?.formUnion(addedSeats)
         }
     

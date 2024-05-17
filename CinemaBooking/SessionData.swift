@@ -7,6 +7,7 @@
 
 import Foundation
 
+// Struct to represent movie information, conforming to Hashable and Identifiable protocols.
 struct MovieInfo: Hashable, Identifiable {
     
     let title: String
@@ -26,6 +27,7 @@ class SessionData: ObservableObject {
         urlSession = URLSession(configuration: .default)
     }
         
+    // Function to get movies for a specific date.
     func getMoviesForDate(date: Date) {
                 
         var urlRequest: URLRequest
@@ -60,6 +62,7 @@ class SessionData: ObservableObject {
                     do {
                         let jsonObject = try JSONSerialization.jsonObject(with: safeData, options: [])
                         if let jsonDict = jsonObject as? [String: Any] {
+                            // Extract the films array from the JSON dictionary.
                             if let films = jsonDict["films"] as? Array<Any> {
                                 for film in films {
                                     if let filmDict = film as? [String: Any] {
